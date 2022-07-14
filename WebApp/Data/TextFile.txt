@@ -1,0 +1,3 @@
+﻿ENTITY FRAMEWORK MYSQL
+
+Scaffold-DbContext "Server=localhost;Database=db_almacen;Uid=root;Pwd=;" Pomelo.EntityFrameworkCore.MySql -OutputDir Models -ContextDir Data/Context -Context DBContext -Force -NoOnConfiguring -UseDatabaseNames -NoPluralize
