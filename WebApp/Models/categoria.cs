@@ -9,5 +9,7 @@ namespace WebApp.Models
         public string codigo { get; set; } = null!;
         public string? descripcion { get; set; }
         public short? estado { get; set; }
+        public virtual ICollection<subcategoria>? subcategoria { get; set; }  //add
+        //public List<subcategoria> subcategoria { get; set; }  //add
     }
 }

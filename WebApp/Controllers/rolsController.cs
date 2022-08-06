@@ -10,93 +10,87 @@ using WebApp.Models;
 
 namespace WebApp.Controllers
 {
-    public class subcategoriasController : Controller
+    public class rolsController : Controller
     {
         private readonly DBContext _context;
 
-        public subcategoriasController(DBContext context)
+        public rolsController(DBContext context)
         {
             _context = context;
         }
 
-        // GET: subcategorias
+        // GET: rols
         public async Task<IActionResult> Index()
         {
-            var subcat = _context.subcategoria
-                .Include(c => c.categoria)
-                //.Select(s => s.estado.Equals("1") ? 3 : 33)
-                .AsNoTracking();   //add
-            return _context.subcategoria != null ? 
-                          View(await subcat.ToListAsync()) :
-                          Problem("Entity set 'DBContext.subcategoria'  is null.");
+              return _context.rol != null ? 
+                          View(await _context.rol.ToListAsync()) :
+                          Problem("Entity set 'DBContext.rol'  is null.");
         }
 
-        // GET: subcategorias/Details/5
+        // GET: rols/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.subcategoria == null)
+            if (id == null || _context.rol == null)
             {
                 return NotFound();
             }
 
-            var subcategoria = await _context.subcategoria
+            var rol = await _context.rol
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (subcategoria == null)
+            if (rol == null)
             {
                 return NotFound();
             }
 
-            return View(subcategoria);
+            return View(rol);
         }
 
-        // GET: subcategorias/Create
+        // GET: rols/Create
         public IActionResult Create()
         {
-            ViewData["cod_categoria"] = new SelectList(_context.categoria, "id", "descripcion"); //add
             return View();
         }
 
-        // POST: subcategorias/Create
+        // POST: rols/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,codigo,descripcion,estado,cod_categoria")] subcategoria subcategoria)
+        public async Task<IActionResult> Create([Bind("id,nombre,descripcion")] rol rol)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(subcategoria);
+                _context.Add(rol);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(subcategoria);
+            return View(rol);
         }
 
-        // GET: subcategorias/Edit/5
+        // GET: rols/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.subcategoria == null)
+            if (id == null || _context.rol == null)
             {
                 return NotFound();
             }
 
-            var subcategoria = await _context.subcategoria.FindAsync(id);
-            if (subcategoria == null)
+            var rol = await _context.rol.FindAsync(id);
+            if (rol == null)
             {
                 return NotFound();
             }
-            ViewData["cod_categoria"] = new SelectList(_context.categoria, "id", "descripcion"); //add
-            return View(subcategoria);
+            return View(rol);
         }
 
-        // POST: subcategorias/Edit/5
+        // POST: rols/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,codigo,descripcion,estado,cod_categoria")] subcategoria subcategoria)
+        public async Task<IActionResult> Edit(int id, [Bind("id,nombre,descripcion")] rol rol)
         {
-            if (id != subcategoria.id)
+            if (id != rol.id)
             {
                 return NotFound();
             }
@@ -105,12 +99,12 @@ namespace WebApp.Controllers
             {
                 try
                 {
-                    _context.Update(subcategoria);
+                    _context.Update(rol);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!subcategoriaExists(subcategoria.id))
+                    if (!rolExists(rol.id))
                     {
                         return NotFound();
                     }
@@ -121,49 +115,49 @@ namespace WebApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(subcategoria);
+            return View(rol);
         }
 
-        // GET: subcategorias/Delete/5
+        // GET: rols/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.subcategoria == null)
+            if (id == null || _context.rol == null)
             {
                 return NotFound();
             }
 
-            var subcategoria = await _context.subcategoria
+            var rol = await _context.rol
                 .FirstOrDefaultAsync(m => m.id == id);
-            if (subcategoria == null)
+            if (rol == null)
             {
                 return NotFound();
             }
 
-            return View(subcategoria);
+            return View(rol);
         }
 
-        // POST: subcategorias/Delete/5
+        // POST: rols/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.subcategoria == null)
+            if (_context.rol == null)
             {
-                return Problem("Entity set 'DBContext.subcategoria'  is null.");
+                return Problem("Entity set 'DBContext.rol'  is null.");
             }
-            var subcategoria = await _context.subcategoria.FindAsync(id);
-            if (subcategoria != null)
+            var rol = await _context.rol.FindAsync(id);
+            if (rol != null)
             {
-                _context.subcategoria.Remove(subcategoria);
+                _context.rol.Remove(rol);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool subcategoriaExists(int id)
+        private bool rolExists(int id)
         {
-          return (_context.subcategoria?.Any(e => e.id == id)).GetValueOrDefault();
+          return (_context.rol?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }
 }

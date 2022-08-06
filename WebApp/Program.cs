@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore; // add for api rest
 using WebApp;
+using WebApp.Data.Context; //add for api rest
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,4 +33,7 @@ app.MapControllerRoute(
     //pattern: "{controller=Home}/{action=Index}/{id?}");
     pattern: "{controller}/{action}/{id?}");
 
+// API REST minima
+app.MapGet("/categoria", async (DBContext db) => await db.categoria.ToListAsync());
+// end API
 app.Run();

@@ -1,4 +1,4 @@
-﻿@model WebApp.Models.categoria
+﻿@model WebApp.Models.rol
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,7 +6,7 @@
 
 <h1>Edit</h1>
 
-<h4>categoria</h4>
+<h4>rol</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,23 +14,14 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="id" />
             <div class="form-group">
-                <label asp-for="codigo" class="control-label"></label>
-                <input asp-for="codigo" class="form-control" />
-                <span asp-validation-for="codigo" class="text-danger"></span>
+                <label asp-for="nombre" class="control-label"></label>
+                <input asp-for="nombre" class="form-control" />
+                <span asp-validation-for="nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="descripcion" class="control-label"></label>
                 <input asp-for="descripcion" class="form-control" />
                 <span asp-validation-for="descripcion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="estado" class="control-label"></label>
-                <!-- <input asp-for="estado" class="form-control" />  -->
-                <!-- <span asp-validation-for="estado" class="text-danger"></span>  -->
-                <select asp-for="estado" class ="form-control">
-                    <option value="0">Deshbilitado</option>
-                    <option value="1">Habilitado</option>
-                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

@@ -468,6 +468,7 @@ namespace WebApp.Data.Context
                 entity.Property(e => e.estado)
                     .HasColumnType("smallint(6)")
                     .HasDefaultValueSql("'0'");
+                entity.HasOne(x => x.categoria).WithMany(x => x.subcategoria).HasForeignKey("cod_categoria"); //add
             });
 
             modelBuilder.Entity<sucursal>(entity =>
