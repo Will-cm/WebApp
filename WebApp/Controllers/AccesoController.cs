@@ -16,6 +16,7 @@ namespace WebApp.Controllers
             _context = context;
         }
 
+        [HttpGet]  //add for swagger
         [Route("")]  //add.
         [Route("~/")]  //add.
         [Route("index")]  //add.
@@ -73,6 +74,7 @@ namespace WebApp.Controllers
 
         }
 
+        [HttpGet]  //add for swagger
         [Route("welcome")]  //add.
         public IActionResult Welcome()  //add.
         {
@@ -80,6 +82,7 @@ namespace WebApp.Controllers
             return View("Index", "Home");
         }
 
+        [HttpGet]  //add for swagger
         [Route("logout")]  //add.
         public IActionResult Logout()  //addd.
         {
