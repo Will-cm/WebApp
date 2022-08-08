@@ -1,0 +1,108 @@
+﻿@model IEnumerable<WebApp.Models.picking_nsalida>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>PICKING</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nota_salida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.item)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.lote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_venc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.serie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cant_picking)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <!--
+            <th>
+                @Html.DisplayNameFor(model => model.created_at)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.updated_at)
+            </th>   -->
+                        
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>            
+            <td>
+                @Html.DisplayFor(modelItem => item.nota_salida.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_venc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.serie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cant_picking)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuario)
+            </td>
+            <td>
+                @{switch (item.estado){
+                    case 0:
+                        <text>Pendiente</text>
+                    break;
+                    case 1:
+                        <text>Completo</text>
+                    break;
+                    default:
+                        <text>Incompleto</text>
+                    break; } 
+                }
+            </td>
+            <!--
+            <td>
+                @Html.DisplayFor(modelItem => item.created_at)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.updated_at)
+            </td>   -->           
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
+                <!-- <a asp-action="Details" asp-route-id="@item.id">Details</a> |  -->
+                <a asp-action="Delete" asp-route-id="@item.id">Borrar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

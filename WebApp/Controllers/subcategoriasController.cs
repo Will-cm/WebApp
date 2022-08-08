@@ -24,7 +24,7 @@ namespace WebApp.Controllers
         {
             var subcat = _context.subcategoria
                 .Include(c => c.categoria)
-                //.Select(s => s.estado.Equals("1") ? 3 : 33)
+                .OrderByDescending(c => c.id)
                 .AsNoTracking();   //add
             return _context.subcategoria != null ? 
                           View(await subcat.ToListAsync()) :

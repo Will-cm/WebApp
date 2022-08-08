@@ -17,5 +17,6 @@ namespace WebApp.Models
         public int? id_rol { get; set; }
         public DateTime? created_at { get; set; }
         public DateTime? updated_at { get; set; }
+        public virtual rol? rol { get; set; } //add
     }
 }

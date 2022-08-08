@@ -22,8 +22,12 @@ namespace WebApp.Controllers
         // GET: users
         public async Task<IActionResult> Index()
         {
-              return _context.users != null ? 
-                          View(await _context.users.ToListAsync()) :
+            var users = _context.users
+                .Include(c => c.rol)
+                .OrderByDescending(c => c.id)
+                .AsNoTracking();   //add
+            return _context.users != null ? 
+                          View(await users.ToListAsync()) :
                           Problem("Entity set 'DBContext.users'  is null.");
         }
 
@@ -48,6 +52,7 @@ namespace WebApp.Controllers
         // GET: users/Create
         public IActionResult Create()
         {
+            ViewData["id_rol"] = new SelectList(_context.rol, "id", "nombre"); //add
             return View();
         }
 
@@ -80,6 +85,7 @@ namespace WebApp.Controllers
             {
                 return NotFound();
             }
+            ViewData["id_rol"] = new SelectList(_context.rol, "id", "nombre"); //add
             return View(users);
         }
 

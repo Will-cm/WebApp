@@ -1,0 +1,133 @@
+﻿@model WebApp.Models.nota_ingreso
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>NOTA DE INGRESO</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.nro_doc)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.nro_doc)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.movimiento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.movimiento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.usuario)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.usuario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.id_sucursal)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.id_sucursal)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.id_suc_origen)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.id_suc_origen)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.created_at)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.created_at)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.updated_at)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.updated_at)
+        </dd>
+    </dl>
+</div>
+
+<!--tabla detalle ingreso-->
+
+    <h4>Detalle</h4>
+<p>
+    <a class="btn btn-success" asp-controller="detalle_ingreso" asp-action="Create">Agregar</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                id_ningreso
+            </th>
+            <th>
+                lote
+            </th>
+            <th>
+                fecha_venc
+            </th>
+            <th>
+                serie
+            </th>
+            <th>
+                cantidad
+            </th>
+            <th>
+                estado
+            </th>
+            <th>
+                item
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in ViewBag.detalle_ingreso) {
+        <tr>
+            <td>
+                @item.id_ningreso
+            </td>
+            <td>
+                @item.lote
+            </td>
+            <td>
+                @item.fecha_venc
+            </td>
+            <td>
+                @item.serie
+            </td>
+            <td>
+                @item.cantidad
+            </td>
+            <td>
+                @item.estado
+            </td>
+            <td>
+                @item.item.id
+            </td>
+            <td>
+                <a asp-controller="detalle_ingreso" asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <!-- <a asp-action="../detalle_ingreso/Details" asp-route-id="@item.id">Details</a> |  -->
+                <a asp-controller="detalle_ingreso" asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

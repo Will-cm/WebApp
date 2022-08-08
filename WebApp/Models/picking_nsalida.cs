@@ -17,5 +17,7 @@ namespace WebApp.Models
         public short? estado { get; set; }
         public DateTime? created_at { get; set; }
         public DateTime? updated_at { get; set; }
+        public virtual item? item { get; set; } //add
+        public virtual nota_salida? nota_salida { get; set; } //add
     }
 }

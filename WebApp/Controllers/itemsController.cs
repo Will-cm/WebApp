@@ -22,8 +22,12 @@ namespace WebApp.Controllers
         // GET: items
         public async Task<IActionResult> Index()
         {
-              return _context.item != null ? 
-                          View(await _context.item.ToListAsync()) :
+            var item = _context.item
+                .Include(c => c.subcategoria)
+                .OrderByDescending(c => c.id)
+                .AsNoTracking();   //add
+            return _context.item != null ? 
+                          View(await item.ToListAsync()) :
                           Problem("Entity set 'DBContext.item'  is null.");
         }
 
@@ -48,6 +52,7 @@ namespace WebApp.Controllers
         // GET: items/Create
         public IActionResult Create()
         {
+            ViewData["cod_sbcategoria"] = new SelectList(_context.subcategoria, "id", "descripcion"); //add
             return View();
         }
 
@@ -80,6 +85,7 @@ namespace WebApp.Controllers
             {
                 return NotFound();
             }
+            ViewData["cod_sbcategoria"] = new SelectList(_context.subcategoria, "id", "descripcion"); //add
             return View(item);
         }
 

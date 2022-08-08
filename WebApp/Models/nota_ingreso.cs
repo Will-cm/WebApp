@@ -14,5 +14,6 @@ namespace WebApp.Models
         public int? id_suc_origen { get; set; }
         public DateTime? created_at { get; set; }
         public DateTime? updated_at { get; set; }
+        public virtual sucursal? sucursal { get; set; } //add
     }
 }

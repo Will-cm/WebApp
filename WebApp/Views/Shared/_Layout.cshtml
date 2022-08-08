@@ -43,9 +43,9 @@
                     <!-- Sidebar - Brand -->
                     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                         <div class="sidebar-brand-icon rotate-n-15">
-                            <i class="fas fa-laugh-wink"></i>
+                            <i class="fa-solid fa-barcode"></i>
                         </div>
-                        <div class="sidebar-brand-text mx-3">SW <sup>2</sup></div>
+                        <div class="sidebar-brand-text mx-3">SGLA <sup></sup></div>
                     </a>
 
                     <!-- Divider -->
@@ -76,7 +76,7 @@
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
                                 <h6 class="collapse-header">Custom Components:</h6>
-                                <a class="collapse-item" href="buttons.html">Nota Ingreso</a>
+                                <a class="collapse-item" asp-controller="nota_ingreso" asp-action="Index">Nota Ingreso</a>
                                 <a class="collapse-item" href="cards.html">Cards</a>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                             data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
                                 <h6 class="collapse-header">Custom Utilities:</h6>
-                                <a class="collapse-item" href="utilities-color.html">Nota Salida</a>
+                                <a class="collapse-item" asp-controller="nota_salida" asp-action="Index">Salidas</a>
                                 <a class="collapse-item" href="utilities-animation.html">Picking</a>
                                 <a class="collapse-item" href="utilities-other.html">Other</a>
                             </div>
@@ -120,6 +120,7 @@
                             <div class="bg-white py-2 collapse-inner rounded">
                                 <h6 class="collapse-header">Inventario:</h6>
                                 <a class="collapse-item" asp-controller="inventarios" asp-action="Index">Inventario</a>
+                                <a class="collapse-item" asp-controller="almacen" asp-action="Index">Almacen</a>
                                 <a class="collapse-item" href="register.html">Register</a>
                                 <div class="collapse-divider"></div>
                                 <h6 class="collapse-header">Other Pages:</h6>
@@ -151,6 +152,7 @@
                                 <a class="collapse-item" asp-controller="categorias" asp-action="Index">Categoria</a>
                                 <a class="collapse-item" asp-controller="subcategorias" asp-action="Index">SubCategoria</a>
                                 <a class="collapse-item" asp-controller="items" asp-action="Index">Items</a>
+                                <a class="collapse-item" asp-controller="racks" asp-action="Index">Racks/Bloques</a>
                             </div>
                         </div>
                     </li>
@@ -368,7 +370,7 @@
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="mr-2 d-none d-lg-inline text-gray-600 small">@(User.nombre)</span>
                                         <img class="img-profile rounded-circle"
-                                            src="img/undraw_profile.svg">
+                                            src="~/img/undraw_profile.svg">
                                     </a>
                                     <!-- Dropdown - User Information -->
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -476,6 +478,13 @@
 
     <!-- Page level custom scripts -->
     <script src="~/js/demo/datatables-demo.js"></script>
+
+    <!-- Page level plugins  ADD -->
+    <script src="~/vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts ADD -->
+    <script src="~/js/demo/chart-area-demo.js"></script>
+    <script src="~/js/demo/chart-pie-demo.js"></script>
 
 @RenderSection("Scripts", required: false) 
 </body>

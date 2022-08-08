@@ -49,14 +49,15 @@
                 <span asp-validation-for="vida_util" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="estado" class="control-label"></label>
-                <input asp-for="estado" class="form-control" />
-                <span asp-validation-for="estado" class="text-danger"></span>
+                <label asp-for="estado" class="control-label"></label>  
+                <select asp-for="estado" class ="form-control">   <!-- add -->
+                    <option value="0">Deshbilitado</option>
+                    <option value="1">Habilitado</option>
+                </select>
             </div>
             <div class="form-group">
-                <label asp-for="cod_sbcategoria" class="control-label"></label>
-                <input asp-for="cod_sbcategoria" class="form-control" />
-                <span asp-validation-for="cod_sbcategoria" class="text-danger"></span>
+                <label asp-for="cod_sbcategoria" class="control-label"></label>  <!-- mod -->
+                <select asp-for="cod_sbcategoria" class ="form-control" asp-items="ViewBag.cod_sbcategoria"></select>  <!-- add -->
             </div>
             <div class="form-group">
                 <label asp-for="created_at" class="control-label"></label>

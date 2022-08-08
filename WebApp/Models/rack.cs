@@ -15,5 +15,6 @@ namespace WebApp.Models
         public int? id_sucursal { get; set; }
         public DateTime? created_at { get; set; }
         public DateTime? updated_at { get; set; }
+        public virtual ICollection<almacen>? almacen { get; set; }  //add
     }
 }

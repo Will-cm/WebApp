@@ -76,6 +76,9 @@ namespace WebApp.Data.Context
                 entity.Property(e => e.updated_at)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                entity.HasOne(x => x.item).WithMany(x => x.almacen).HasForeignKey("id_item"); //add
+                entity.HasOne(x => x.rack).WithMany(x => x.almacen).HasForeignKey("id_rack"); //add
             });
 
             modelBuilder.Entity<categoria>(entity =>
@@ -147,13 +150,14 @@ namespace WebApp.Data.Context
                 entity.Property(e => e.updated_at)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                entity.HasOne(x => x.item).WithMany(x => x.corte_almacen).HasForeignKey("id_item"); //add
             });
 
             modelBuilder.Entity<detalle_ingreso>(entity =>
             {
                 entity.HasIndex(e => e.id_item, "id_item");
 
-                entity.HasIndex(e => e.id_nsalida, "id_nsalida");
+                entity.HasIndex(e => e.id_ningreso, "id_nsalida");
 
                 entity.Property(e => e.id).HasColumnType("int(11)");
 
@@ -165,11 +169,12 @@ namespace WebApp.Data.Context
 
                 entity.Property(e => e.id_item).HasColumnType("int(11)");
 
-                entity.Property(e => e.id_nsalida).HasColumnType("int(11)");
+                entity.Property(e => e.id_ningreso).HasColumnType("int(11)");
 
                 entity.Property(e => e.lote).HasMaxLength(20);
 
                 entity.Property(e => e.serie).HasMaxLength(20);
+                entity.HasOne(x => x.item).WithMany(x => x.detalle_ingreso).HasForeignKey("id_item"); //add
             });
 
             modelBuilder.Entity<detalle_salida>(entity =>
@@ -193,6 +198,8 @@ namespace WebApp.Data.Context
                 entity.Property(e => e.lote).HasMaxLength(20);
 
                 entity.Property(e => e.serie).HasMaxLength(20);
+                entity.HasOne(x => x.item).WithMany(x => x.detalle_salida).HasForeignKey("id_item"); //add
+                entity.HasOne(x => x.nota_salida).WithMany(x => x.detalle_salida).HasForeignKey("id_nsalida"); //add
             });
 
             modelBuilder.Entity<inventario>(entity =>
@@ -228,6 +235,7 @@ namespace WebApp.Data.Context
                 entity.Property(e => e.updated_at)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                entity.HasOne(x => x.item).WithMany(x => x.inventarios).HasForeignKey("id_item"); //add o
             });
 
             modelBuilder.Entity<item>(entity =>
@@ -264,6 +272,8 @@ namespace WebApp.Data.Context
                     .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                 entity.Property(e => e.vida_util).HasColumnType("int(11)");
+
+                entity.HasOne(x => x.subcategoria).WithMany(x => x.item).HasForeignKey("cod_sbcategoria"); //add
             });
 
             modelBuilder.Entity<modulo>(entity =>
@@ -305,6 +315,7 @@ namespace WebApp.Data.Context
                     .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                 entity.Property(e => e.usuario).HasMaxLength(20);
+                entity.HasOne(x => x.sucursal).WithMany(x => x.nota_ingreso).HasForeignKey("id_suc_origen"); //add
             });
 
             modelBuilder.Entity<nota_salida>(entity =>
@@ -341,6 +352,7 @@ namespace WebApp.Data.Context
                 entity.Property(e => e.updated_at)
                     .HasColumnType("datetime")
                     .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                entity.HasOne(x => x.sucursal).WithMany(x => x.nota_salida).HasForeignKey("id_sucursal"); //add
             });
 
             modelBuilder.Entity<operaciones>(entity =>
@@ -405,6 +417,8 @@ namespace WebApp.Data.Context
                     .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                 entity.Property(e => e.usuario).HasMaxLength(20);
+                entity.HasOne(x => x.item).WithMany(x => x.picking_nsalida).HasForeignKey("id_item"); //add
+                entity.HasOne(x => x.nota_salida).WithMany(x => x.picking_nsalida).HasForeignKey("id_nsalida"); //add
             });
 
             modelBuilder.Entity<rack>(entity =>
@@ -532,6 +546,7 @@ namespace WebApp.Data.Context
                 entity.Property(e => e.updated_at)
                     .HasColumnType("timestamp")
                     .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                entity.HasOne(x => x.rol).WithMany(x => x.users).HasForeignKey("id_rol"); //add
             });
 
             OnModelCreatingPartial(modelBuilder);

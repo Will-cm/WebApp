@@ -1,0 +1,123 @@
+﻿@model IEnumerable<WebApp.Models.almacen>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Contenido principal</h1>
+
+<p>
+    <a class="btn btn-success" asp-action="Create">Nuevo</a>
+</p>
+
+            <!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Lista</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.item)   <!--mod-->
+                        </th>
+                       <th>
+                            @Html.DisplayNameFor(model => model.rack)   <!--add-->
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.lote)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.serie)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.fecha_venc)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ubicacion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.cantidad)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.estado)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.observacion)
+                        </th>
+                        <!--
+                        <th>
+                            @Html.DisplayNameFor(model => model.created_at)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.updated_at)
+                        </th> -->
+                        
+                        <th></th>
+                    </tr>
+                </thead>
+                                    
+                <tbody>
+                    @foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.item.codigo)  <!--mod-->
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.rack.codigo) <!--add-->
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.lote)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.serie)
+                        </td>
+                        <td>
+                            @{     
+                              //@Html.DisplayFor(modelItem => item.fecha_venc)                                  
+                              @Html.Raw(item.fecha_venc) //This throw error Cannot convert lambda expression to type string                                     
+                             }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ubicacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cantidad)
+                        </td>
+                        <td>
+                            @{switch (item.estado){
+                                case 1:
+                                    <text>Habilitado</text>
+                                break;
+                                default:
+                                    <text>DesHabilitado</text>
+                                break; } 
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.observacion)
+                        </td>
+                        <!--
+                        <td>
+                            @Html.DisplayFor(modelItem => item.created_at)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.updated_at)
+                        </td>  -->
+                        
+                        <td>
+                            <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                            <!-- <a asp-action="Details" asp-route-id="@item.id">Details</a> |  -->
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                        </td>
+                        
+                    </tr>
+                    }
+                                        
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

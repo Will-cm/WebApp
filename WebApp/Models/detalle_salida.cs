@@ -13,5 +13,7 @@ namespace WebApp.Models
         public string? serie { get; set; }
         public decimal cantidad { get; set; }
         public short? estado { get; set; }
+        public virtual item? item { get; set; } //add
+        public virtual nota_salida? nota_salida { get; set; } //add
     }
 }

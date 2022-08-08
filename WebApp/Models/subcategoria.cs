@@ -12,5 +12,7 @@ namespace WebApp.Models
         public int? cod_categoria { get ; set; }
         public virtual categoria? categoria { get; set; } //add
         //public virtual ICollection<categoria> categoria { get; set; }
+
+        public virtual ICollection<item>? item { get; set; }  //add
     }
 }
